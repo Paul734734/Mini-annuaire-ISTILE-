@@ -1,0 +1,8 @@
+[
+  {"id":1,"nom":"Paul Jojo","filiere":"Cyber sécurité","note":16.8,"email":"paul.jojo@istile.cm","telephone":"+237 690 12 34 56","statut":"Actif","photo":"https://randomuser.me/api/portraits/men/32.jpg"},
+  {"id":2,"nom":"Natacha M.","filiere":"Informatique","note":15.9,"email":"natacha.m@istile.cm","telephone":"+237 690 12 34 57","statut":"Actif","photo":"https://randomuser.me/api/portraits/women/44.jpg"},
+  {"id":3,"nom":"Éric Tchatchoua","filiere":"Réseaux & Télécoms","note":17.2,"email":"eric.tchatchoua@istile.cm","telephone":"+237 690 12 34 58","statut":"Actif","photo":"https://randomuser.me/api/portraits/men/46.jpg"},
+  {"id":4,"nom":"Diane Kouamé","filiere":"Data Science","note":16.1,"email":"diane.kouame@istile.cm","telephone":"+237 690 12 34 59","statut":"Actif","photo":"https://randomuser.me/api/portraits/women/68.jpg"},
+  {"id":5,"nom":"Kevin Mbarga","filiere":"Génie Logiciel","note":15.7,"email":"kevin.mbarga@istile.cm","telephone":"+237 690 12 34 60","statut":"Actif","photo":"https://randomuser.me/api/portraits/men/52.jpg"},
+  {"id":6,"nom":"Sarah T.","filiere":"Systèmes Embarqués","note":16.5,"email":"sarah.t@istile.cm","telephone":"+237 690 12 34 61","statut":"Actif","photo":"https://randomuser.me/api/portraits/women/12.jpg"}
+]
