@@ -21,11 +21,20 @@ Ouvrir ensuite http://localhost:3000 dans le navigateur.
 ## Fonctionnalités
 
 - Présentation de l'annuaire
-- Liste des étudiants et consultation des profils
+- Liste des 20 étudiants fournis dans le kit de départ
+- Consultation des profils
 - Recherche par nom, filière ou note
-- Filtrage et tri
-- Statistiques de la promotion
+- Filtrage par filière et tri des résultats
+- Statistiques calculées à partir du fichier JSON
 - Formulaire de contact de démonstration
 - Affichage responsive et thème sombre
 
-Les données de démonstration sont stockées dans `data/etudiants.json`.
+## Organisation
+
+- `data/etudiants.json` : données officielles du kit de départ
+- `src/charger.js` : récupération et préparation des données avec Fetch API
+- `src/etudiants.js` : recherche, tri et calcul des statistiques
+- `src/main.js` : interactions et affichage des pages
+- `outils/simulerFetch.js` : simulation de réponses Fetch pour les exercices sur l'API
+
+Le serveur local est lancé par `npm start`. Le fichier `outils/simulerFetch.js` est un outil séparé destiné aux exercices de simulation d'API ; il n'est pas nécessaire pour charger le fichier JSON local.
