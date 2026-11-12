@@ -28,7 +28,7 @@ let etudiants = [];
 
 function afficherCarte(etudiant) {
   const { id, nom, filiere, note, photo, statut } = etudiant;
-  const noteAffichee = note === null ? "Note non renseignée" : `${noteAffichee}`;
+  const noteAffichee = note === null ? "Note non renseignée" : `${note.toFixed(1)} / 20`;
 
   return `
     <article class="student-card">
@@ -128,7 +128,7 @@ function afficherProfil(id) {
   if (!etudiant) return;
 
   const { nom, filiere, note, photo, email, telephone, statut, niveau } = etudiant;
-  const noteAffichee = note === null ? "Non renseignée" : `${noteAffichee}`;
+  const noteAffichee = note === null ? "Non renseignée" : `${note.toFixed(1)} / 20`;
   elements.profileContent.innerHTML = `
     <div class="profile-detail">
       <img src="${photo}" alt="Photo de ${nom}">
