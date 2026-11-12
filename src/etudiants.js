@@ -1,11 +1,16 @@
 export function rechercherEtudiants(etudiants, terme) {
-  const recherche = terme.trim().toLowerCase();
+  const recherche = terme.trim().toLocaleLowerCase("fr");
 
   if (!recherche) return etudiants;
 
   return etudiants.filter((etudiant) => {
-    return etudiant.nom.toLowerCase().includes(recherche)
-      || etudiant.filiere.toLowerCase().includes(recherche)
+    const nomComplet = `${etudiant.prenom || ""} ${etudiant.nom}`.toLocaleLowerCase("fr");
+    const filiere = etudiant.filiere.toLocaleLowerCase("fr");
+    const note = String(etudiant.note).replace(".", ",");
+
+    return nomComplet.includes(recherche)
+      || filiere.includes(recherche)
+      || note.includes(recherche)
       || String(etudiant.note).includes(recherche);
   });
 }
@@ -21,19 +26,21 @@ export function trierEtudiants(etudiants, critere) {
 
 export function obtenirStatistiques(etudiants) {
   const total = etudiants.length;
-  const somme = etudiants.reduce((acc, etudiant) => acc + etudiant.note, 0);
+  const somme = etudiants.reduce((acc, { note }) => acc + note, 0);
   const moyenne = total ? somme / total : 0;
-  const filieres = etudiants.reduce((resultat, etudiant) => {
-    resultat[etudiant.filiere] = (resultat[etudiant.filiere] || 0) + 1;
+
+  const filieres = etudiants.reduce((resultat, { filiere }) => {
+    resultat[filiere] = (resultat[filiere] || 0) + 1;
     return resultat;
   }, {});
+
   const tauxReussite = total
-    ? etudiants.filter((etudiant) => etudiant.note >= 10).length / total * 100
+    ? etudiants.filter(({ note }) => note >= 10).length / total * 100
     : 0;
 
   return { total, moyenne, filieres, tauxReussite };
 }
 
 export function obtenirFilieres(etudiants) {
-  return [...new Set(etudiants.map(({ filiere }) => filiere))];
+  return [...new Set(etudiants.map(({ filiere }) => filiere))].sort((a, b) => a.localeCompare(b, "fr"));
 }
