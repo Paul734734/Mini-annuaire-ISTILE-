@@ -1,8 +1,182 @@
 [
-  {"id":1,"nom":"Paul Jojo","filiere":"Cyber sécurité","note":16.8,"email":"paul.jojo@istile.cm","telephone":"+237 690 12 34 56","statut":"Actif","photo":"https://randomuser.me/api/portraits/men/32.jpg"},
-  {"id":2,"nom":"Natacha M.","filiere":"Informatique","note":15.9,"email":"natacha.m@istile.cm","telephone":"+237 690 12 34 57","statut":"Actif","photo":"https://randomuser.me/api/portraits/women/44.jpg"},
-  {"id":3,"nom":"Éric Tchatchoua","filiere":"Réseaux & Télécoms","note":17.2,"email":"eric.tchatchoua@istile.cm","telephone":"+237 690 12 34 58","statut":"Actif","photo":"https://randomuser.me/api/portraits/men/46.jpg"},
-  {"id":4,"nom":"Diane Kouamé","filiere":"Data Science","note":16.1,"email":"diane.kouame@istile.cm","telephone":"+237 690 12 34 59","statut":"Actif","photo":"https://randomuser.me/api/portraits/women/68.jpg"},
-  {"id":5,"nom":"Kevin Mbarga","filiere":"Génie Logiciel","note":15.7,"email":"kevin.mbarga@istile.cm","telephone":"+237 690 12 34 60","statut":"Actif","photo":"https://randomuser.me/api/portraits/men/52.jpg"},
-  {"id":6,"nom":"Sarah T.","filiere":"Systèmes Embarqués","note":16.5,"email":"sarah.t@istile.cm","telephone":"+237 690 12 34 61","statut":"Actif","photo":"https://randomuser.me/api/portraits/women/12.jpg"}
+  {
+    "id": 1,
+    "prenom": "Aïcha",
+    "nom": "Ngo",
+    "email": "aicha.ngo@istile.cm",
+    "filiere": "Informatique",
+    "niveau": "L3",
+    "note": 14
+  },
+  {
+    "id": 2,
+    "prenom": "Paul",
+    "nom": "Tchinda",
+    "email": "paul.tchinda@istile.cm",
+    "filiere": "Réseaux",
+    "niveau": "L3",
+    "note": 9
+  },
+  {
+    "id": 3,
+    "prenom": "Marie",
+    "nom": "Fotso",
+    "email": "marie.fotso@istile.cm",
+    "filiere": "Génie logiciel",
+    "niveau": "L3",
+    "note": 16
+  },
+  {
+    "id": 4,
+    "prenom": "Christelle",
+    "nom": "Nkou",
+    "email": "christelle.nkou@istile.cm",
+    "filiere": "Informatique",
+    "niveau": "L3",
+    "note": 11.5
+  },
+  {
+    "id": 5,
+    "prenom": "Brice",
+    "nom": "Essomba",
+    "email": "brice.essomba@istile.cm",
+    "filiere": "Réseaux",
+    "niveau": "L3",
+    "note": 7.5
+  },
+  {
+    "id": 6,
+    "prenom": "Linda",
+    "nom": "Mvondo",
+    "email": "linda.mvondo@istile.cm",
+    "filiere": "Génie logiciel",
+    "niveau": "L3",
+    "note": 13
+  },
+  {
+    "id": 7,
+    "prenom": "Rodrigue",
+    "nom": "Kamga",
+    "email": "rodrigue.kamga@istile.cm",
+    "filiere": "Informatique",
+    "niveau": "L3",
+    "note": 10
+  },
+  {
+    "id": 8,
+    "prenom": "Sandrine",
+    "nom": "Atangana",
+    "email": "sandrine.atangana@istile.cm",
+    "filiere": "Réseaux",
+    "niveau": "L3",
+    "note": 15.5
+  },
+  {
+    "id": 9,
+    "prenom": "Hervé",
+    "nom": "Tagne",
+    "email": "herve.tagne@istile.cm",
+    "filiere": "Génie logiciel",
+    "niveau": "L3",
+    "note": 8
+  },
+  {
+    "id": 10,
+    "prenom": "Nadège",
+    "nom": "Biyong",
+    "email": "nadege.biyong@istile.cm",
+    "filiere": "Informatique",
+    "niveau": "L3",
+    "note": 17
+  },
+  {
+    "id": 11,
+    "prenom": "Patrick",
+    "nom": "Owona",
+    "email": "patrick.owona@istile.cm",
+    "filiere": "Réseaux",
+    "niveau": "L3",
+    "note": 12
+  },
+  {
+    "id": 12,
+    "prenom": "Estelle",
+    "nom": "Djomo",
+    "email": "estelle.djomo@istile.cm",
+    "filiere": "Génie logiciel",
+    "niveau": "L3",
+    "note": 9.5
+  },
+  {
+    "id": 13,
+    "prenom": "Ulrich",
+    "nom": "Nana",
+    "email": "ulrich.nana@istile.cm",
+    "filiere": "Informatique",
+    "niveau": "L3",
+    "note": 6
+  },
+  {
+    "id": 14,
+    "prenom": "Carine",
+    "nom": "Abena",
+    "email": "carine.abena@istile.cm",
+    "filiere": "Réseaux",
+    "niveau": "L3",
+    "note": 14.5
+  },
+  {
+    "id": 15,
+    "prenom": "Yannick",
+    "nom": "Ewane",
+    "email": "yannick.ewane@istile.cm",
+    "filiere": "Génie logiciel",
+    "niveau": "L3",
+    "note": 10
+  },
+  {
+    "id": 16,
+    "prenom": "Mireille",
+    "nom": "Tamba",
+    "email": "mireille.tamba@istile.cm",
+    "filiere": "Informatique",
+    "niveau": "L3",
+    "note": 12.5
+  },
+  {
+    "id": 17,
+    "prenom": "Cédric",
+    "nom": "Mbida",
+    "email": "cedric.mbida@istile.cm",
+    "filiere": "Réseaux",
+    "niveau": "L3",
+    "note": 5
+  },
+  {
+    "id": 18,
+    "prenom": "Flora",
+    "nom": "Ndzie",
+    "email": "flora.ndzie@istile.cm",
+    "filiere": "Génie logiciel",
+    "niveau": "L3",
+    "note": 18
+  },
+  {
+    "id": 19,
+    "prenom": "Armand",
+    "nom": "Kenfack",
+    "email": "armand.kenfack@istile.cm",
+    "filiere": "Informatique",
+    "niveau": "L3",
+    "note": 9
+  },
+  {
+    "id": 20,
+    "prenom": "Joëlle",
+    "nom": "Mekongo",
+    "email": "joelle.mekongo@istile.cm",
+    "filiere": "Réseaux",
+    "niveau": "L3",
+    "note": 13.5
+  }
 ]
