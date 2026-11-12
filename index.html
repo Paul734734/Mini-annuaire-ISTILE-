@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mini-annuaire des étudiants de niveau 3 de l'ISTILE.">
+  <meta name="theme-color" content="#123d9b">
+  <title>ISTILE Annuaire | Étudiants</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="src/main.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#accueil" aria-label="ISTILE Annuaire - Accueil">
+      <span class="brand-cap">◆</span>
+      <span><strong>ISTILE</strong><small>Annuaire</small></span>
+    </a>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Ouvrir le menu">☰</button>
+    <nav class="main-nav" id="main-nav">
+      <a class="nav-link active" href="#accueil" data-page="accueil">Accueil</a>
+      <a class="nav-link" href="#etudiants" data-page="etudiants">Étudiants</a>
+      <a class="nav-link" href="#recherche" data-page="recherche">Recherche</a>
+      <a class="nav-link" href="#statistiques" data-page="statistiques">Statistiques</a>
+      <a class="nav-link" href="#contact" data-page="contact">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button" id="theme-toggle" aria-label="Changer le thème">☾</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-section active" id="page-accueil">
+      <div class="hero">
+        <div class="hero-content">
+          <span class="eyebrow">ISTILE <i></i> Niveau 3</span>
+          <h1>Annuaire des<br>Étudiants <span>ISTILE</span></h1>
+          <p>Découvrez les étudiants de niveau 3, explorez les filières et consultez les statistiques en temps réel.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#etudiants">⌕ &nbsp;Explorer l'annuaire</a>
+            <a class="button button-outline" href="#statistiques">Voir les statistiques&nbsp; →</a>
+          </div>
+        </div>
+        <div class="hero-image" role="img" aria-label="Bâtiment d'un établissement universitaire"></div>
+      </div>
+      <div class="stat-strip" id="home-stats"></div>
+      <div class="section-heading">
+        <div><span class="section-kicker">LA PROMOTION</span><h2>Quelques étudiants</h2></div>
+        <a class="text-link" href="#etudiants">Voir tous les étudiants →</a>
+      </div>
+      <div class="student-grid compact-grid" id="featured-students"></div>
+    </section>
+
+    <section class="page-section" id="page-etudiants">
+      <div class="page-heading">
+        <div><span class="section-kicker">NOTRE ANNUAIRE</span><h1>Liste des <span>Étudiants</span></h1><p>Explorez la liste des étudiants de niveau 3.</p></div>
+        <span class="result-count" id="student-count"></span>
+      </div>
+      <div class="toolbar">
+        <label class="search-field"><span>⌕</span><input id="student-search" type="search" placeholder="Rechercher un étudiant..."></label>
+        <select id="field-filter" aria-label="Filtrer par filière"><option value="">Toutes les filières</option></select>
+        <select id="sort-students" aria-label="Trier les étudiants"><option value="name">Nom A à Z</option><option value="grade">Meilleures notes</option><option value="grade-asc">Notes croissantes</option></select>
+      </div>
+      <div class="student-grid" id="student-list"></div>
+      <p class="empty-state hidden" id="empty-state">Aucun étudiant ne correspond à votre recherche.</p>
+    </section>
+
+    <section class="page-section" id="page-recherche">
+      <div class="search-banner">
+        <span class="search-symbol">⌕</span>
+        <h1>Rechercher un étudiant</h1>
+        <p>Trouvez rapidement un étudiant par nom, filière ou note.</p>
+        <label class="large-search"><input id="global-search" type="search" placeholder="Ex. Paul, Cyber sécurité, 16..."><button id="global-search-button">⌕ &nbsp; Rechercher</button></label>
+      </div>
+      <div class="section-heading"><div><span class="section-kicker">ANNUAIRE ISTILE</span><h2>Résultats de recherche</h2><p id="search-summary">Saisissez un nom ou une filière pour commencer.</p></div></div>
+      <div class="student-grid" id="search-results"></div>
+    </section>
+
+    <section class="page-section" id="page-statistiques">
+      <div class="page-heading"><div><span class="section-kicker">LES CHIFFRES CLÉS</span><h1>Nos <span>Statistiques</span></h1><p>Découvrez les données clés de notre promotion.</p></div></div>
+      <div class="stat-strip stats-strip-large" id="stats-cards"></div>
+      <div class="dashboard-grid">
+        <article class="panel">
+          <h2>Répartition par filière</h2>
+          <div class="distribution">
+            <div class="donut" id="donut-chart"><div><strong id="donut-total">0</strong><small>Étudiants</small></div></div>
+            <ul class="legend" id="field-legend"></ul>
+          </div>
+        </article>
+        <article class="panel">
+          <h2>Évolution des notes</h2>
+          <div class="grade-chart">
+            <div class="chart-y"><span>20</span><span>18</span><span>16</span><span>14</span><span>12</span></div>
+            <svg viewBox="0 0 420 220" role="img" aria-label="Graphique de la moyenne par semestre"><path class="chart-grid" d="M10 15H410 M10 60H410 M10 105H410 M10 150H410 M10 195H410"/><polyline id="grade-line" points="10,130 140,100 270,78 400,95"/><g id="grade-dots"></g></svg>
+          </div>
+          <div class="chart-labels"><span>S1</span><span>S2</span><span>S3</span><span>S4</span></div>
+          <p class="chart-note">Moyenne générale actuelle : <strong id="chart-average">—</strong>/20</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="page-section" id="page-contact">
+      <div class="contact-banner"><span class="mail-icon">✉</span><h1>Nous contacter</h1><p>Une question ? Une suggestion ?<br>Notre équipe est à votre écoute.</p></div>
+      <div class="contact-layout">
+        <article class="contact-info panel">
+          <h2>Nos coordonnées</h2>
+          <p><span>⌖</span><div><strong>ISTILE Yaoundé</strong><small>BP 890, Yaoundé – Cameroun</small></div></p>
+          <p><span>✉</span><div><strong>contact@istile.cm</strong></div></p>
+          <p><span>☎</span><div><strong>+237 222 30 45 67</strong></div></p>
+          <p><span>◷</span><div><strong>Lun – Ven : 8h – 17h</strong></div></p>
+        </article>
+        <form class="contact-form panel" id="contact-form">
+          <h2>Envoyez-nous un message</h2>
+          <label>Nom complet<input name="name" type="text" placeholder="Votre nom" required></label>
+          <label>Email<input name="email" type="email" placeholder="Votre adresse email" required></label>
+          <label>Votre message<textarea name="message" rows="4" placeholder="Écrivez votre message..." required></textarea></label>
+          <button class="button button-primary" type="submit">➤ &nbsp; Envoyer le message</button>
+          <p class="form-feedback" id="form-feedback" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><span>© 2026 ISTILE Annuaire. Tous droits réservés.</span><span>Yaoundé, Cameroun</span></footer>
+
+  <dialog class="profile-dialog" id="profile-dialog">
+    <button class="dialog-close" id="dialog-close" aria-label="Fermer">×</button>
+    <div id="profile-content"></div>
+  </dialog>
+</body>
+</html>
