@@ -18,15 +18,15 @@ export async function chargerEtudiants() {
       throw new Error("Le fichier des étudiants n'a pas le format attendu.");
     }
 
-    return donnees.map(({ id, prenom, nom, email, filiere, niveau, note }) => ({
+    return donnees.map(({ id, prenom, nom, email, filiere, niveau, note, photo }) => ({
       id,
       prenom,
       nom: `${prenom} ${nom}`,
-      email,
+      email: email || "Non renseigné",
       filiere,
       niveau,
-      note: Number(note),
-      photo: creerAvatar(prenom, nom),
+      note: note === null || note === undefined || note === "" ? null : Number(note),
+      photo: photo || creerAvatar(prenom, nom),
       statut: "Actif",
       telephone: "Non renseigné"
     }));

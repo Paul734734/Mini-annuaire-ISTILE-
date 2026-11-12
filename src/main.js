@@ -28,6 +28,7 @@ let etudiants = [];
 
 function afficherCarte(etudiant) {
   const { id, nom, filiere, note, photo, statut } = etudiant;
+  const noteAffichee = note === null ? "Note non renseignée" : `${noteAffichee}`;
 
   return `
     <article class="student-card">
@@ -35,7 +36,7 @@ function afficherCarte(etudiant) {
       <div class="student-info">
         <h3>${nom}</h3>
         <p>${filiere}</p>
-        <div class="student-grade"><span>★</span> ${note.toFixed(1)} / 20</div>
+        <div class="student-grade"><span>★</span> ${noteAffichee}</div>
         <button class="profile-button" data-profile="${id}">Voir profil →</button>
       </div>
       <span class="student-status">● ${statut}</span>
@@ -126,18 +127,19 @@ function afficherProfil(id) {
   const etudiant = etudiants.find((element) => element.id === Number(id));
   if (!etudiant) return;
 
-  const { nom, filiere, note, photo, email, telephone, statut } = etudiant;
+  const { nom, filiere, note, photo, email, telephone, statut, niveau } = etudiant;
+  const noteAffichee = note === null ? "Non renseignée" : `${noteAffichee}`;
   elements.profileContent.innerHTML = `
     <div class="profile-detail">
       <img src="${photo}" alt="Photo de ${nom}">
       <h2>${nom}</h2>
       <p>${filiere}</p>
-      <div class="student-grade"><span>★</span> ${note.toFixed(1)} / 20</div>
+      <div class="student-grade"><span>★</span> ${noteAffichee}</div>
       <div class="profile-meta">
         <div><small>Adresse email</small><strong>${email}</strong></div>
         <div><small>Téléphone</small><strong>${telephone}</strong></div>
         <div><small>Statut</small><strong>${statut}</strong></div>
-        <div><small>Niveau</small><strong>Licence 3</strong></div>
+        <div><small>Niveau</small><strong>${niveau === "L3" ? "Licence 3" : niveau}</strong></div>
       </div>
     </div>
   `;

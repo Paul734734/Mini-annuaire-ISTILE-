@@ -178,5 +178,15 @@
     "filiere": "Réseaux",
     "niveau": "L3",
     "note": 13.5
+  },
+  {
+    "id": 21,
+    "prenom": "Douanla",
+    "nom": "Charnel",
+    "email": "",
+    "filiere": "Cybersécurité",
+    "niveau": "L3",
+    "note": null,
+    "photo": "./images/douanla-charnel.jpg"
   }
 ]
