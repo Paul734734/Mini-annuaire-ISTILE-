@@ -1,0 +1,10 @@
+{
+  "name": "mini-annuaire-istile",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Mini-annuaire des étudiants de niveau 3 de l'ISTILE",
+  "scripts": {
+    "start": "node outils/serveur.js"
+  }
+}
