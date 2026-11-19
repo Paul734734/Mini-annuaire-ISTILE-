@@ -1,12 +1,6 @@
 export function moyenneGenerale(liste) {
-  const notes = liste
-    .map((etudiant) => etudiant.note)
-    .filter((note) => Number.isFinite(note));
-
-  if (notes.length === 0) return 0;
-
-  const somme = notes.reduce((total, note) => total + note, 0);
-  return Number((somme / notes.length).toFixed(2));
+  const somme = liste.reduce((total, etudiant) => total + etudiant.note, 0);
+  return Number((somme / liste.length).toFixed(2));
 }
 
 export function admis(liste) {
@@ -20,34 +14,26 @@ export function nomsFormates(liste) {
 export function effectifParFiliere(liste) {
   return liste.reduce((effectifs, etudiant) => {
     const filiere = etudiant.filiere;
-    effectifs[filiere] = (effectifs[filiere] || 0) + 1;
-    return effectifs;
+    return { ...effectifs, [filiere]: (effectifs[filiere] || 0) + 1 };
   }, {});
 }
 
 export function moyenneParFiliere(liste) {
-  const groupes = liste.reduce((resultat, etudiant) => {
-    if (Number.isFinite(etudiant.note)) {
-      const filiere = etudiant.filiere;
-      resultat[filiere] = resultat[filiere] || [];
-      resultat[filiere] = [...resultat[filiere], etudiant.note];
-    }
-    return resultat;
+  const totaux = liste.reduce((resultat, etudiant) => {
+    const { filiere, note } = etudiant;
+    const ancien = resultat[filiere] || { somme: 0, nombre: 0 };
+    return { ...resultat, [filiere]: { somme: ancien.somme + note, nombre: ancien.nombre + 1 } };
   }, {});
 
-  return Object.entries(groupes).reduce((moyennes, [filiere, notes]) => {
-    const somme = notes.reduce((total, note) => total + note, 0);
-    moyennes[filiere] = Number((somme / notes.length).toFixed(2));
-    return moyennes;
+  return Object.entries(totaux).reduce((moyennes, [filiere, { somme, nombre }]) => {
+    return { ...moyennes, [filiere]: Number((somme / nombre).toFixed(2)) };
   }, {});
 }
 
 export function classementParNote(liste) {
-  return [...liste].sort((a, b) => (b.note ?? -1) - (a.note ?? -1));
+  return [...liste].sort((a, b) => b.note - a.note);
 }
 
 export function majNote(liste, id, note) {
-  return liste.map((etudiant) =>
-    etudiant.id === id ? { ...etudiant, note } : etudiant
-  );
+  return liste.map((etudiant) => (etudiant.id === id ? { ...etudiant, note } : etudiant));
 }

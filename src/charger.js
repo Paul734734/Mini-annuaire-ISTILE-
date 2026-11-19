@@ -1,53 +1,37 @@
-const API = "https://dummyjson.com";
+function versUtilisateur(donnees) {
+  const { id, firstName, lastName, email } = donnees;
+  return { id, prenom: firstName, nom: lastName, email };
+}
 
-export async function chargerUtilisateurs(
-  limite = 5,
-  base = API
-) {
+export async function chargerUtilisateurs(limite = 5, base = "https://dummyjson.com") {
   try {
     const reponse = await fetch(`${base}/users?limit=${limite}`);
-
     if (!reponse.ok) {
-      throw new Error(`Erreur HTTP ${reponse.status}`);
+      console.error(`Erreur : le serveur a répondu ${reponse.status}`);
+      return [];
     }
-
     const donnees = await reponse.json();
-
-    return donnees.users.map((utilisateur) => ({
-      id: utilisateur.id,
-      prenom: utilisateur.firstName,
-      nom: utilisateur.lastName,
-      email: utilisateur.email
-    }));
+    return donnees.users.map(versUtilisateur);
   } catch (erreur) {
-    console.error("Impossible de charger les utilisateurs :", erreur.message);
+    console.error(`Erreur réseau : ${erreur.message}`);
     return [];
   }
 }
 
-export async function chargerUtilisateur(id, base = API) {
+export async function chargerUtilisateur(id, base = "https://dummyjson.com") {
   try {
     const reponse = await fetch(`${base}/users/${id}`);
-
     if (reponse.status === 404) {
-      console.error("Utilisateur introuvable (404).");
+      console.error(`Utilisateur ${id} introuvable (404)`);
       return null;
     }
-
     if (!reponse.ok) {
-      throw new Error(`Erreur HTTP ${reponse.status}`);
+      console.error(`Erreur : le serveur a répondu ${reponse.status}`);
+      return null;
     }
-
-    const utilisateur = await reponse.json();
-
-    return {
-      id: utilisateur.id,
-      prenom: utilisateur.firstName,
-      nom: utilisateur.lastName,
-      email: utilisateur.email
-    };
+    return versUtilisateur(await reponse.json());
   } catch (erreur) {
-    console.error("Erreur lors du chargement de l'utilisateur :", erreur.message);
+    console.error(`Erreur réseau : ${erreur.message}`);
     return null;
   }
 }
