@@ -1,44 +1,55 @@
-import http from "node:http";
 import { readFile } from "node:fs/promises";
-import { extname, join, normalize } from "node:path";
-import { fileURLToPath } from "node:url";
+import {
+  moyenneGenerale,
+  admis,
+  nomsFormates,
+  effectifParFiliere,
+  moyenneParFiliere,
+  classementParNote,
+  majNote
+} from "./etudiants.js";
+import { chargerUtilisateurs, chargerUtilisateur } from "./charger.js";
 
-const racine = fileURLToPath(new URL("../", import.meta.url));
-const port = process.env.PORT || 3000;
+// En cas d'absence de connexion Internet, décommentez ces deux lignes :
+// import { simulerFetch } from "../outils/simulerFetch.js";
+// globalThis.fetch = simulerFetch;
 
-const types = {
-  ".html": "text/html; charset=utf-8",
-  ".css": "text/css; charset=utf-8",
-  ".js": "text/javascript; charset=utf-8",
-  ".json": "application/json; charset=utf-8",
-  ".png": "image/png",
-  ".jpg": "image/jpeg",
-  ".jpeg": "image/jpeg",
-  ".svg": "image/svg+xml"
-};
+const contenu = await readFile(
+  new URL("../data/etudiants.json", import.meta.url),
+  "utf8"
+);
+const etudiants = JSON.parse(contenu);
 
-const serveur = http.createServer(async (requete, reponse) => {
-  try {
-    const url = decodeURIComponent((requete.url || "/").split("?")[0]);
-    const fichier = normalize(join(racine, url === "/" ? "index.html" : url));
+console.log("Moyenne générale :", moyenneGenerale(etudiants));
+console.log("Étudiants admis :", admis(etudiants));
+console.log("Noms formatés :", nomsFormates(etudiants));
+console.log("Effectif par filière :", effectifParFiliere(etudiants));
+console.log("Moyenne par filière :", moyenneParFiliere(etudiants));
+console.log("Classement par note :", classementParNote(etudiants));
 
-    if (!fichier.startsWith(racine)) {
-      reponse.writeHead(403);
-      reponse.end("Accès interdit");
-      return;
-    }
+// Vérification : les fonctions ne modifient pas la liste d'origine.
+const premiereNote = etudiants[0].note;
+const classement = classementParNote(etudiants);
+const listeModifiee = majNote(etudiants, etudiants[0].id, 20);
 
-    const contenu = await readFile(fichier);
-    reponse.writeHead(200, {
-      "Content-Type": types[extname(fichier)] || "application/octet-stream"
-    });
-    reponse.end(contenu);
-  } catch {
-    reponse.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
-    reponse.end("Fichier introuvable");
-  }
-});
+console.log("La liste d'origine est conservée :", etudiants[0].note === premiereNote);
+console.log(
+  "La note est modifiée uniquement dans la nouvelle liste :",
+  listeModifiee[0].note === 20 && etudiants[0].note === premiereNote
+);
+console.log("Les deux listes sont différentes :", listeModifiee !== etudiants);
+console.log("Le classement ne modifie pas la liste :", classement !== etudiants);
 
-serveur.listen(port, "0.0.0.0", () => {
-  console.log(`Annuaire disponible sur http://localhost:${port}`);
-});
+// Tests des trois situations de l'API.
+async function testerAPI() {
+  console.log("1. Test de chargement de trois utilisateurs :");
+  console.log(await chargerUtilisateurs(3));
+
+  console.log("2. Test d'un utilisateur inexistant :");
+  console.log(await chargerUtilisateur(999999));
+
+  console.log("3. Test d'une adresse invalide :");
+  console.log(await chargerUtilisateur(1, "https://url-invalide.example"));
+}
+
+await testerAPI();
