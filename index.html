@@ -8,7 +8,7 @@
 </head>
 <body>
   <header>
-    <h1>ISTILE Annuaire</h1>
+    <h1>ISTILE <span>Annuaire</span></h1>
     <nav aria-label="Navigation principale">
       <a href="#recherche">Recherche</a>
       <a href="#etudiants">Étudiants</a>
@@ -17,66 +17,112 @@
   </header>
 
   <main>
-    <section id="recherche">
+    <div class="accueil">
+      <p class="etiquette">ISTILE · Niveau 3</p>
+      <h2>Annuaire des Étudiants <span>ISTILE</span></h2>
+      <p>Découvrez les étudiants de niveau 3 et explorez les filières.</p>
+    </div>
+
+    <section id="recherche" class="bandeau">
       <h2>Rechercher un étudiant</h2>
+      <p>Trouvez rapidement un étudiant par nom ou par filière.</p>
       <form>
-        <label for="recherche-etudiant">Nom de l'étudiant</label>
-        <input type="search" id="recherche-etudiant" name="recherche" placeholder="Exemple : Paul">
+        <label for="champ-recherche">Nom de l'étudiant</label>
+        <input type="search" id="champ-recherche" name="recherche" placeholder="Ex. Paul, Réseaux, 16...">
         <button type="submit">Rechercher</button>
       </form>
     </section>
 
     <section id="etudiants">
-      <h2>Les étudiants</h2>
-      <div class="liste-etudiants">
-        <article class="carte-etudiant">
-          <h3>Aïcha Ngo</h3>
-          <p>Filière : Informatique</p>
-          <p>Note : 14/20</p>
+      <p class="etiquette">Notre annuaire</p>
+      <h2>Liste des <span>Étudiants</span></h2>
+      <div class="liste">
+        <article class="carte">
+          <span class="avatar">AN</span>
+          <div>
+            <h3>Aïcha Ngo</h3>
+            <p>Informatique</p>
+            <p class="note">★ 14 / 20</p>
+          </div>
         </article>
-
-        <article class="carte-etudiant">
-          <h3>Paul Tchinda</h3>
-          <p>Filière : Réseaux</p>
-          <p>Note : 9/20</p>
+        <article class="carte">
+          <span class="avatar">PT</span>
+          <div>
+            <h3>Paul Tchinda</h3>
+            <p>Réseaux</p>
+            <p class="note">★ 9 / 20</p>
+          </div>
         </article>
-
-        <article class="carte-etudiant">
-          <h3>Marie Fotso</h3>
-          <p>Filière : Génie logiciel</p>
-          <p>Note : 16/20</p>
+        <article class="carte">
+          <span class="avatar">MF</span>
+          <div>
+            <h3>Marie Fotso</h3>
+            <p>Génie logiciel</p>
+            <p class="note">★ 16 / 20</p>
+          </div>
         </article>
-
-        <article class="carte-etudiant">
-          <h3>Christelle Nkou</h3>
-          <p>Filière : Informatique</p>
-          <p>Note : 11,5/20</p>
+        <article class="carte">
+          <span class="avatar">CN</span>
+          <div>
+            <h3>Christelle Nkou</h3>
+            <p>Informatique</p>
+            <p class="note">★ 11,5 / 20</p>
+          </div>
         </article>
-
-        <article class="carte-etudiant">
-          <h3>Brice Essomba</h3>
-          <p>Filière : Réseaux</p>
-          <p>Note : 7,5/20</p>
+        <article class="carte">
+          <span class="avatar">BE</span>
+          <div>
+            <h3>Brice Essomba</h3>
+            <p>Réseaux</p>
+            <p class="note">★ 7,5 / 20</p>
+          </div>
         </article>
-
-        <article class="carte-etudiant">
-          <h3>Linda Mvondo</h3>
-          <p>Filière : Génie logiciel</p>
-          <p>Note : 13/20</p>
+        <article class="carte">
+          <span class="avatar">LM</span>
+          <div>
+            <h3>Linda Mvondo</h3>
+            <p>Génie logiciel</p>
+            <p class="note">★ 13 / 20</p>
+          </div>
+        </article>
+        <article class="carte">
+          <span class="avatar">RK</span>
+          <div>
+            <h3>Rodrigue Kamga</h3>
+            <p>Informatique</p>
+            <p class="note">★ 10 / 20</p>
+          </div>
         </article>
       </div>
     </section>
 
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>Pour toute information, contactez-nous à l'adresse
-        <a href="mailto:contact@istile.cm">contact@istile.cm</a>.
-      </p>
+    <section id="contact" class="contact">
+      <div class="bloc">
+        <h2>Nos coordonnées</h2>
+        <p>ISTILE Yaoundé</p>
+        <p>BP 890, Yaoundé – Cameroun</p>
+        <p><a href="mailto:contact@istile.cm">contact@istile.cm</a></p>
+        <p>+237 222 30 45 67</p>
+        <p>Lun – Ven : 8h – 17h</p>
+      </div>
+      <div class="bloc">
+        <h2>Envoyez-nous un message</h2>
+        <form>
+          <label for="nom">Nom complet</label>
+          <input type="text" id="nom" name="nom" placeholder="Votre nom">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="Votre adresse email">
+          <label for="message">Votre message</label>
+          <textarea id="message" name="message" rows="4" placeholder="Écrivez votre message..."></textarea>
+          <button type="submit">Envoyer</button>
+        </form>
+      </div>
     </section>
   </main>
 
   <footer>
-    <p>© 2026 ISTILE Annuaire</p>
+    <p>© 2026 ISTILE Annuaire. Tous droits réservés.</p>
+    <p>Yaoundé, Cameroun</p>
   </footer>
 </body>
 </html>
