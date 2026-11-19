@@ -1,36 +1,53 @@
-function creerAvatar(prenom, nom) {
-  const initiales = `${prenom.charAt(0)}${nom.charAt(0)}`.toUpperCase();
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160"><rect width="160" height="160" rx="80" fill="#e8efff"/><text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" font-family="Arial,sans-serif" font-size="54" font-weight="700" fill="#1745a5">${initiales}</text></svg>`;
-  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
-}
+const API = "https://dummyjson.com";
 
-export async function chargerEtudiants() {
+export async function chargerUtilisateurs(
+  limite = 5,
+  base = API
+) {
   try {
-    const reponse = await fetch("./data/etudiants.json");
+    const reponse = await fetch(`${base}/users?limit=${limite}`);
 
     if (!reponse.ok) {
-      throw new Error(`Erreur HTTP : ${reponse.status}`);
+      throw new Error(`Erreur HTTP ${reponse.status}`);
     }
 
     const donnees = await reponse.json();
 
-    if (!Array.isArray(donnees)) {
-      throw new Error("Le fichier des étudiants n'a pas le format attendu.");
-    }
-
-    return donnees.map(({ id, prenom, nom, email, filiere, niveau, note, photo }) => ({
-      id,
-      prenom,
-      nom: `${prenom} ${nom}`,
-      email: email || "Non renseigné",
-      filiere,
-      niveau,
-      note: note === null || note === undefined || note === "" ? null : Number(note),
-      photo: photo || creerAvatar(prenom, nom),
-      statut: "Actif",
-      telephone: "Non renseigné"
+    return donnees.users.map((utilisateur) => ({
+      id: utilisateur.id,
+      prenom: utilisateur.firstName,
+      nom: utilisateur.lastName,
+      email: utilisateur.email
     }));
   } catch (erreur) {
-    throw new Error(`Impossible de charger les étudiants : ${erreur.message}`);
+    console.error("Impossible de charger les utilisateurs :", erreur.message);
+    return [];
+  }
+}
+
+export async function chargerUtilisateur(id, base = API) {
+  try {
+    const reponse = await fetch(`${base}/users/${id}`);
+
+    if (reponse.status === 404) {
+      console.error("Utilisateur introuvable (404).");
+      return null;
+    }
+
+    if (!reponse.ok) {
+      throw new Error(`Erreur HTTP ${reponse.status}`);
+    }
+
+    const utilisateur = await reponse.json();
+
+    return {
+      id: utilisateur.id,
+      prenom: utilisateur.firstName,
+      nom: utilisateur.lastName,
+      email: utilisateur.email
+    };
+  } catch (erreur) {
+    console.error("Erreur lors du chargement de l'utilisateur :", erreur.message);
+    return null;
   }
 }
